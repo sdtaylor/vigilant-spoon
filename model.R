@@ -37,18 +37,21 @@ rm(absences, presences)
 
 #################################################################################
 #Remove points that are taken in urban areas
-urban_cover = raster::raster('./data/urban_cover.tif')
+#urban_cover = raster::raster('./data/urban_cover.tif')
 
-quail_data$urban_cover = raster::extract(urban_cover, quail_data_spatial)
+#quail_data$urban_cover = raster::extract(urban_cover, quail_data_spatial)
 
-quail_data = quail_data %>%
-  filter(urban_cover < 20)
+#quail_data = quail_data %>%
+#  filter(urban_cover < 20)
 
-quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
-                                            proj4string = CRS('+proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0'))
+#quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
+#                                            proj4string = CRS('+proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0'))
 
 #################################################################################
 habitat_metrics = raster::stack('./data/habitat_layers.tif')
+landcover = raster::stack('./data/landcover.tif')
+
+habitat_metrics = raster::stack(habitat_metrics, landcover)
 
 model_data = as.data.frame(raster::extract(habitat_metrics, quail_data_spatial))
 model_data$presence = quail_data$presence
@@ -58,10 +61,14 @@ model_data$count = quail_data$count
 run_cv = T
 
 pa_formula = as.formula(presence ~ habitat_layers.1 + habitat_layers.2 + habitat_layers.3 + habitat_layers.4 + habitat_layers.5 + habitat_layers.6 +
-                          habitat_layers.7 + habitat_layers.8 + habitat_layers.9 + habitat_layers.10)
+                          habitat_layers.7 + habitat_layers.8 + habitat_layers.9 + habitat_layers.10 +
+                          landcover.1 + landcover.2 + landcover.3 + landcover.4 + landcover.5 + landcover.6 + landcover.7 + landcover.8 + 
+                          landcover.9 + landcover.10 + landcover.11 + landcover.12)
 
 abund_formula = as.formula(count ~ habitat_layers.1 + habitat_layers.2 + habitat_layers.3 + habitat_layers.4 + habitat_layers.5 + habitat_layers.6 +
-                          habitat_layers.7 + habitat_layers.8 + habitat_layers.9 + habitat_layers.10)
+                          habitat_layers.7 + habitat_layers.8 + habitat_layers.9 + habitat_layers.10 +
+                            landcover.1 + landcover.2 + landcover.3 + landcover.4 + landcover.5 + landcover.6 + landcover.7 + landcover.8 + 
+                            landcover.9 + landcover.10 + landcover.11 + landcover.12)
 if(run_cv){
   test_size = 0.2
   n = nrow(model_data)
