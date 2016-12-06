@@ -2,6 +2,7 @@ library(tidyverse)
 library(lubridate)
 library(raster)
 library(sp)
+library(gbm)
 
 raw_data = read_delim('~/data/ebird/ebird_study_area.csv', delim = ',') %>%
   mutate(date = as.Date(paste(year,month,day,sep='-')))
@@ -30,7 +31,7 @@ min_lat = min(presences$decimalLatitude)
 max_lon = max(presences$decimalLongitude)
 min_lon = min(presences$decimalLongitude)
 
-num_absences = 10*nrow(presences)
+num_absences = 5*nrow(presences)
 
 absences = data.frame(decimalLongitude = runif(num_absences, min_lon, max_lon),
                       decimalLatitude  = runif(num_absences, min_lat, max_lat),
@@ -49,7 +50,7 @@ quail_data$presence = ifelse(quail_data$count>0, 1, 0)
 quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
                                              proj4string = CRS('+proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0'))
 
-rm(absences, presences)
+rm(absences, presences, max_lat, min_lat, max_lon, min_lon)
 
 #################################################################################
 #Remove points that are taken in urban areas
@@ -74,7 +75,7 @@ model_data$presence = quail_data$presence
 model_data$count = quail_data$count
 
 ############################################
-run_cv = T
+run_cv = F
 
 pa_formula = as.formula(presence ~ habitat_layers.1 + habitat_layers.2 + habitat_layers.3 + habitat_layers.4 + habitat_layers.5 + habitat_layers.6 +
                           habitat_layers.7 + habitat_layers.8 + habitat_layers.9 + habitat_layers.10 +
@@ -108,18 +109,18 @@ if(run_cv){
   print(Metrics::auc(test_prediction$presence, test_prediction$presence_predict))
   
   Metrics::mse(test_prediction$abundance, test_prediction$abund_predict)
+} else {
+
+  pa_model = glm(pa_formula, family = 'binomial', data = model_data)
+  abund_model = gbm(abund_formula, distribution = 'poisson', n.trees = 2000, data = model_data, n.cores=2)
+  
+  pa_predict = raster::predict(habitat_metrics, pa_model, type='response')
+  abund_predict = raster::predict(habitat_metrics, abund_model, type='response', n.trees=2000)
+
+  writeRaster(pa_predict, './results/presence', format = 'GTiff')
+  writeRaster(abund_predict, './results/abundance', format = 'GTiff')
+  
 }
-
-
-pa_model_data = as.data.frame(raster::extract(habitat_metrics, occurances_spatial))
-pa_model_data$presence = occurances$presence
-
-pa_model = glm(presence ~ ., family = 'binomial', data = pa_model_data)
-
-abund_model_data = as.data.frame(raster::extract(habitat_metrics, abundance_spatial))
-abund_model_data$individualCount = abundance$individualCount
-
-abund_model = glm(individualCount ~ ., family = 'poisson', data = abund_model_data)
 
 ##################################################################################
 
