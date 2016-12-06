@@ -11,22 +11,38 @@ quail = 'Callipepla gambelii'
 #Find absences.
 #First group observations by the same observer on the same day at the same place. If that session had > 2
 #recorded species, assumed they recorded *all* species they saw. If it doesn't include gambel's quail, thats an absence
-absences = raw_data %>%
-  group_by(date, recordedBy, locality, decimalLatitude, decimalLongitude) %>%
-  filter(!quail %in% scientificName, n() > 2) %>%
-  summarize(total_spp = n()) %>%
-  ungroup() %>%
-  dplyr::select(date, decimalLatitude, decimalLongitude)
+#absences = raw_data %>%
+#  group_by(date, recordedBy, locality, decimalLatitude, decimalLongitude) %>%
+#  filter(!quail %in% scientificName, n() > 2) %>%
+#  summarize(total_spp = n()) %>%
+#  ungroup() %>%
+#  dplyr::select(date, decimalLatitude, decimalLongitude)
 
-absences$count=0
+#absences$count=0
 
 presences= raw_data %>%
   filter(scientificName == quail, !is.na(individualCount)) %>%
   dplyr::select(date, decimalLatitude, decimalLongitude, count=individualCount)
 
+#Add in pseudo randomly located absences
+max_lat = max(presences$decimalLatitude)
+min_lat = min(presences$decimalLatitude)
+max_lon = max(presences$decimalLongitude)
+min_lon = min(presences$decimalLongitude)
+
+num_absences = 10*nrow(presences)
+
+absences = data.frame(decimalLongitude = runif(num_absences, min_lon, max_lon),
+                      decimalLatitude  = runif(num_absences, min_lat, max_lat),
+                      count =0)
+
 
 quail_data = presences %>%
   bind_rows(absences)
+
+
+
+
 
 quail_data$presence = ifelse(quail_data$count>0, 1, 0)
 
@@ -37,15 +53,15 @@ rm(absences, presences)
 
 #################################################################################
 #Remove points that are taken in urban areas
-#urban_cover = raster::raster('./data/urban_cover.tif')
+urban_cover = raster::raster('./data/urban_cover.tif')
 
-#quail_data$urban_cover = raster::extract(urban_cover, quail_data_spatial)
+quail_data$urban_cover = raster::extract(urban_cover, quail_data_spatial)
 
-#quail_data = quail_data %>%
-#  filter(urban_cover < 20)
+quail_data = quail_data %>%
+  filter(urban_cover < 20)
 
-#quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
-#                                            proj4string = CRS('+proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0'))
+quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
+                                            proj4string = CRS('+proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0'))
 
 #################################################################################
 habitat_metrics = raster::stack('./data/habitat_layers.tif')
