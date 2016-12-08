@@ -41,10 +41,6 @@ absences = data.frame(decimalLongitude = runif(num_absences, min_lon, max_lon),
 quail_data = presences %>%
   bind_rows(absences)
 
-
-
-
-
 quail_data$presence = ifelse(quail_data$count>0, 1, 0)
 
 quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
@@ -54,38 +50,42 @@ rm(absences, presences, max_lat, min_lat, max_lon, min_lon)
 
 #################################################################################
 #Remove points that are taken in urban areas
-urban_cover = raster::raster('./data/urban_cover.tif')
+#urban_cover = raster::raster('./data/urban_cover.tif')
 
-quail_data$urban_cover = raster::extract(urban_cover, quail_data_spatial)
+#quail_data$urban_cover = raster::extract(urban_cover, quail_data_spatial)
 
-quail_data = quail_data %>%
-  filter(urban_cover < 20)
+#quail_data = quail_data %>%
+  filter(urban_cover < 5)
 
-quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
-                                            proj4string = CRS('+proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0'))
+#quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
+#                                            proj4string = CRS('+proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0'))
 
 #################################################################################
-habitat_metrics = raster::stack('./data/habitat_layers.tif')
-landcover = raster::stack('./data/landcover.tif')
+raster_file_list = list.files('./data', full.names = T)
+raster_file_list=raster_file_list[!grepl('xml', raster_file_list)]
 
-habitat_metrics = raster::stack(habitat_metrics, landcover)
+habitat_metrics = raster::stack(raster_file_list)
 
 model_data = as.data.frame(raster::extract(habitat_metrics, quail_data_spatial))
 model_data$presence = quail_data$presence
 model_data$count = quail_data$count
 
+model_data = model_data %>%
+  filter(landcover_Urban < 5)
+
 ############################################
 run_cv = F
 
-pa_formula = as.formula(presence ~ habitat_layers.1 + habitat_layers.2 + habitat_layers.3 + habitat_layers.4 + habitat_layers.5 + habitat_layers.6 +
-                          habitat_layers.7 + habitat_layers.8 + habitat_layers.9 + habitat_layers.10 +
-                          landcover.1 + landcover.2 + landcover.3 + landcover.4 + landcover.5 + landcover.6 + landcover.7 + landcover.8 + 
-                          landcover.9 + landcover.10 + landcover.11 + landcover.12)
+pa_formula = as.formula(presence ~ habitat_cv + habitat_Entropy + habitat_evenness + habitat_Homogeneity + habitat_Maximum + habitat_range + 
+                          habitat_shannon + habitat_simpson + habitat_std + habitat_Uniformity + landcover_Barren + landcover_Conifer + 
+                          landcover_Cultivated + landcover_Decid_Broadleaf + landcover_Evergreen_Broadleaf + landcover_Herbaceous + landcover_Mixed_Trees + 
+                          landcover_Shrubs + landcover_Snow + landcover_Water + landcover_Wetlands )
 
-abund_formula = as.formula(count ~ habitat_layers.1 + habitat_layers.2 + habitat_layers.3 + habitat_layers.4 + habitat_layers.5 + habitat_layers.6 +
-                          habitat_layers.7 + habitat_layers.8 + habitat_layers.9 + habitat_layers.10 +
-                            landcover.1 + landcover.2 + landcover.3 + landcover.4 + landcover.5 + landcover.6 + landcover.7 + landcover.8 + 
-                            landcover.9 + landcover.10 + landcover.11 + landcover.12)
+abund_formula = as.formula(count ~ habitat_cv + habitat_Entropy + habitat_evenness + habitat_Homogeneity + habitat_Maximum + habitat_range + 
+                          habitat_shannon + habitat_simpson + habitat_std + habitat_Uniformity + landcover_Barren + landcover_Conifer + 
+                          landcover_Cultivated + landcover_Decid_Broadleaf + landcover_Evergreen_Broadleaf + landcover_Herbaceous + landcover_Mixed_Trees + 
+                          landcover_Shrubs + landcover_Snow + landcover_Water + landcover_Wetlands )
+
 if(run_cv){
   test_size = 0.2
   n = nrow(model_data)
@@ -112,6 +112,8 @@ if(run_cv){
 } else {
 
   pa_model = glm(pa_formula, family = 'binomial', data = model_data)
+  pa_model = gbm(pa_formula, distribution = 'bernoulli', n.trees = 2000, data = model_data)
+  
   abund_model = gbm(abund_formula, distribution = 'poisson', n.trees = 2000, data = model_data, n.cores=2)
   
   pa_predict = raster::predict(habitat_metrics, pa_model, type='response')
