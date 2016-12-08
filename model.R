@@ -12,30 +12,30 @@ quail = 'Callipepla gambelii'
 #Find absences.
 #First group observations by the same observer on the same day at the same place. If that session had > 2
 #recorded species, assumed they recorded *all* species they saw. If it doesn't include gambel's quail, thats an absence
-#absences = raw_data %>%
-#  group_by(date, recordedBy, locality, decimalLatitude, decimalLongitude) %>%
-#  filter(!quail %in% scientificName, n() > 2) %>%
-#  summarize(total_spp = n()) %>%
-#  ungroup() %>%
-#  dplyr::select(date, decimalLatitude, decimalLongitude)
+absences = raw_data %>%
+  group_by(date, recordedBy, locality, decimalLatitude, decimalLongitude) %>%
+  filter(!quail %in% scientificName, n() > 2) %>%
+  summarize(total_spp = n()) %>%
+  ungroup() %>%
+  dplyr::select(date, decimalLatitude, decimalLongitude)
 
-#absences$count=0
+absences$count=0
 
 presences= raw_data %>%
   filter(scientificName == quail, !is.na(individualCount)) %>%
   dplyr::select(date, decimalLatitude, decimalLongitude, count=individualCount)
 
 #Add in pseudo randomly located absences
-max_lat = max(presences$decimalLatitude)
-min_lat = min(presences$decimalLatitude)
-max_lon = max(presences$decimalLongitude)
-min_lon = min(presences$decimalLongitude)
+#max_lat = max(presences$decimalLatitude)
+#min_lat = min(presences$decimalLatitude)
+#max_lon = max(presences$decimalLongitude)
+#min_lon = min(presences$decimalLongitude)
 
-num_absences = 5*nrow(presences)
+#num_absences = 5*nrow(presences)
 
-absences = data.frame(decimalLongitude = runif(num_absences, min_lon, max_lon),
-                      decimalLatitude  = runif(num_absences, min_lat, max_lat),
-                      count =0)
+#absences = data.frame(decimalLongitude = runif(num_absences, min_lon, max_lon),
+#                      decimalLatitude  = runif(num_absences, min_lat, max_lat),
+#                      count =0)
 
 
 quail_data = presences %>%
@@ -116,11 +116,14 @@ if(run_cv){
   
   abund_model = gbm(abund_formula, distribution = 'poisson', n.trees = 2000, data = model_data, n.cores=2)
   
-  pa_predict = raster::predict(habitat_metrics, pa_model, type='response')
+  pa_predict = raster::predict(habitat_metrics, pa_model, type='response', n.trees=2000)
   abund_predict = raster::predict(habitat_metrics, abund_model, type='response', n.trees=2000)
 
+  pa_and_abund = raster::overlay(pa_predict, abund_predict, fun=prod)
+  
   writeRaster(pa_predict, './results/presence', format = 'GTiff')
   writeRaster(abund_predict, './results/abundance', format = 'GTiff')
+  writeRaster(pa_and_abund, './results/pa_and_abund', format = 'GTiff')
   
 }
 
