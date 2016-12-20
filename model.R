@@ -14,7 +14,7 @@ quail = 'Callipepla gambelii'
 #recorded species, assumed they recorded *all* species they saw. If it doesn't include gambel's quail, thats an absence
 absences = raw_data %>%
   group_by(date, recordedBy, locality, decimalLatitude, decimalLongitude) %>%
-  filter(!quail %in% scientificName, n() > 2) %>%
+  filter(!quail %in% scientificName, n() > 5) %>%
   summarize(total_spp = n()) %>%
   ungroup() %>%
   dplyr::select(date, decimalLatitude, decimalLongitude)
@@ -23,7 +23,8 @@ absences$count=0
 
 presences= raw_data %>%
   filter(scientificName == quail, !is.na(individualCount)) %>%
-  dplyr::select(date, decimalLatitude, decimalLongitude, count=individualCount)
+  dplyr::select(date, decimalLatitude, decimalLongitude, count=individualCount) %>%
+  filter(count <= 50)
 
 #Add in pseudo randomly located absences
 #max_lat = max(presences$decimalLatitude)
@@ -55,7 +56,7 @@ rm(absences, presences, max_lat, min_lat, max_lon, min_lon)
 #quail_data$urban_cover = raster::extract(urban_cover, quail_data_spatial)
 
 #quail_data = quail_data %>%
-  filter(urban_cover < 5)
+#  filter(urban_cover < 5)
 
 #quail_data_spatial = SpatialPointsDataFrame(cbind(quail_data$decimalLongitude, quail_data$decimalLatitude), data=as.data.frame(quail_data), 
 #                                            proj4string = CRS('+proj=longlat +datum=NAD83 +no_defs +ellps=GRS80 +towgs84=0,0,0'))
@@ -94,14 +95,14 @@ if(run_cv){
   pa_model = glm(pa_formula, family = 'binomial', data = model_data[-test_set,])
   #pa_model = gbm(pa_formula, distribution = 'bernoulli', n.trees = 2000, data = model_data[-test_set,])
   
-  abund_model = glm(abund_formula, family = 'poisson', data = model_data[-test_set,])
-  #abund_model = gbm(abund_formula, distribution = 'poisson', n.trees = 2000, data = model_data[-test_set,])
+  #abund_model = glm(abund_formula, family = 'poisson', data = model_data[-test_set,])
+  abund_model = gbm(abund_formula, distribution = 'poisson', n.trees = 2000, data = model_data[-test_set,])
   
   test_prediction = data.frame(presence = model_data$presence[test_set])
   test_prediction$abundance = model_data$count[test_set]
   
   test_prediction$presence_predict = predict(pa_model, newdata = model_data[test_set,], type = 'response')
-  test_prediction$abund_predict    = predict(abund_model, newdata = model_data[test_set,], type = 'response')
+  test_prediction$abund_predict    = predict(abund_model, newdata = model_data[test_set,], type = 'response', n.trees=2000)
   
   test_prediction = filter(test_prediction, !is.na(abund_predict))
   
