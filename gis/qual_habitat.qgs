@@ -1,14 +1,14 @@
 <!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
-<qgis projectname="" version="2.18.1">
+<qgis projectname="" version="2.18.2">
   <title></title>
   <autotransaction active="0"/>
   <evaluateDefaultValues active="0"/>
-  <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
+  <layer-tree-group expanded="1" checked="Qt::Checked" name="">
     <customproperties/>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="cb_2014_us_state_5m20161201104227415" name="AZ Boundery">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" checked="Qt::Unchecked" id="cities_points20161220130240852" name="cities_points">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="cities_points20161220130240852" name="cities_points">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="tl_2013_04_prisecroads20161208124433295" name="tl_2013_04_prisecroads">
@@ -17,7 +17,7 @@
     <layer-tree-layer expanded="1" checked="Qt::Checked" id="AZ_SMA20161206180855122" name="AZ_SMA">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="0" checked="Qt::Checked" id="quail_map_5x520161220125406616" name="quail_map_5x5">
+    <layer-tree-layer expanded="1" checked="Qt::Checked" id="quail_map_5x520161220125406616" name="quail_map_5x5">
       <customproperties/>
     </layer-tree-layer>
   </layer-tree-group>
@@ -25,10 +25,10 @@
   <mapcanvas>
     <units>degrees</units>
     <extent>
-      <xmin>-110.75275426753287888</xmin>
-      <ymin>31.21840517913890523</ymin>
-      <xmax>-108.64115124883224439</xmax>
-      <ymax>32.73526286703677357</ymax>
+      <xmin>-110.7422440184231931</xmin>
+      <ymin>31.48091296928528848</ymin>
+      <xmax>-109.81162055358321084</xmax>
+      <ymax>32.14942089652307544</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -81,9 +81,9 @@
         <legendlayerfile isInOverview="0" layerid="cb_2014_us_state_5m20161201104227415" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="cities_points" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="cities_points" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="cities_points20161220130240852" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="cities_points20161220130240852" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="tl_2013_04_prisecroads" showFeatureCount="0">
@@ -96,14 +96,14 @@
         <legendlayerfile isInOverview="0" layerid="AZ_SMA20161206180855122" visible="1"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="false" checked="Qt::Checked" name="quail_map_5x5" showFeatureCount="0">
-      <filegroup open="false" hidden="false">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="quail_map_5x5" showFeatureCount="0">
+      <filegroup open="true" hidden="false">
         <legendlayerfile isInOverview="0" layerid="quail_map_5x520161220125406616" visible="1"/>
       </filegroup>
     </legendlayer>
   </legend>
   <Composer title="pretty map" visible="1">
-    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" worldFileMap="{529f4d42-5500-47c8-a26f-8e5f5d7fffb0}" alignmentSnap="1" printResolution="300" paperWidth="1117.6" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="863.6" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" worldFileMap="" alignmentSnap="1" printResolution="300" paperWidth="416.8" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="279.4" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
       <symbol alpha="1" clip_to_extent="1" type="fill" name="">
         <layer pass="0" class="SimpleFill" locked="0">
           <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
@@ -119,7 +119,79 @@
           <prop k="style" v="solid"/>
         </layer>
       </symbol>
-      <ComposerLegend symbolWidth="25" title="" rasterBorderWidth="0" titleAlignment="1" map="0" wmsLegendWidth="50" rasterBorderColor="0,0,0,255" wrapChar="" fontColor="#000000" columnCount="1" wmsLegendHeight="25" columnSpace="2" symbolHeight="18" equalColumnWidth="0" resizeToContents="1" splitLayer="0" boxSpace="2" rasterBorder="1">
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="High" htmlState="0" halign="1">
+        <LabelFont description="Ubuntu,14,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="236.587" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="219.022" y="236.587" visibility="1" zValue="16" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="14.7413" outlineWidth="0.3" excludeFromExports="0" uuid="{45b73cb9-b87c-40c5-8f69-69d97a3736ce}" height="9.01023" itemRotation="0" frame="false" pagex="219.022">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="USFWS" htmlState="0" halign="1">
+        <LabelFont description="Ubuntu,10,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="236.587" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="28.9073" y="236.587" visibility="1" zValue="12" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="15.0064" outlineWidth="0.3" excludeFromExports="0" uuid="{4a255581-fb25-43ea-9c9f-93fb1e090d09}" height="5.85692" itemRotation="0" frame="false" pagex="28.9073">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Southern Arizona Gambel's Quail Habitat" htmlState="0" halign="1">
+        <LabelFont description="Ubuntu,28,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="251.023" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="21.296" y="251.023" visibility="1" zValue="11" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="196.549" outlineWidth="0.3" excludeFromExports="0" uuid="{557decc0-2ee7-4ea2-9049-691dd7e05dfa}" height="14.64" itemRotation="0" frame="false" pagex="21.296">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="238" blue="238" green="238"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="USFS" htmlState="0" halign="1">
+        <LabelFont description="Ubuntu,10,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="236.587" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="88.2801" y="236.587" visibility="1" zValue="11" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="10.1744" outlineWidth="0.3" excludeFromExports="0" uuid="{9be9b02d-e8ff-4723-bcc2-8f6144179922}" height="5.85692" itemRotation="0" frame="false" pagex="88.2801">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="State" htmlState="0" halign="1">
+        <LabelFont description="Ubuntu,10,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="236.587" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="70.3243" y="236.587" visibility="1" zValue="10" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="10.1744" outlineWidth="0.3" excludeFromExports="0" uuid="{6aff0156-e0df-463f-8b69-5da5ef7ef19d}" height="5.85692" itemRotation="0" frame="false" pagex="70.3243">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="BLM" htmlState="0" halign="1">
+        <LabelFont description="Ubuntu,10,-1,5,50,0,0,0,0,0" style=""/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="236.587" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="53.0022" y="236.587" visibility="1" zValue="9" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="10.1744" outlineWidth="0.3" excludeFromExports="0" uuid="{bbe3350e-7d84-4939-8129-ca9964caa827}" height="5.85692" itemRotation="0" frame="false" pagex="53.0022">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Chance of Seeing Quail" htmlState="0" halign="1">
+        <LabelFont description="Ubuntu,12,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="228.796" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="148.384" y="228.796" visibility="1" zValue="8" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="52.5426" outlineWidth="0.3" excludeFromExports="0" uuid="{380b7888-72c4-4008-a52f-97200c459068}" height="6.82006" itemRotation="0" frame="false" pagex="148.384">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLabel valign="32" marginX="1" marginY="1" labelText="Low" htmlState="0" halign="1">
+        <LabelFont description="Ubuntu,14,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
+        <FontColor red="0" blue="0" green="0"/>
+        <ComposerItem pagey="236.587" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="112.2" y="236.587" visibility="1" zValue="4" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="14.7413" outlineWidth="0.3" excludeFromExports="0" uuid="{f778fc84-22fc-406e-9460-6f4d5c6aee71}" height="9.01023" itemRotation="0" frame="false" pagex="112.2">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerLabel>
+      <ComposerLegend symbolWidth="7" resizeToContents="1" title="" boxSpace="2" rasterBorderWidth="0" splitLayer="0" equalColumnWidth="0" titleAlignment="1" rasterBorder="1" symbolHeight="7" wmsLegendHeight="25" wrapChar="" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1" rasterBorderColor="0,0,0,255">
         <styles>
           <style marginBottom="2" name="title">
             <styleFont description="Ubuntu,16,-1,5,50,0,0,0,0,0" style=""/>
@@ -130,32 +202,36 @@
           <style marginTop="2" name="subgroup">
             <styleFont description="Ubuntu,12,-1,5,50,0,0,0,0,0" style=""/>
           </style>
-          <style marginTop="2" name="symbol">
+          <style marginTop="11" name="symbol">
             <styleFont description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
           </style>
-          <style marginTop="2" marginLeft="2" name="symbolLabel">
-            <styleFont description="Ubuntu,28,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
+          <style marginTop="11" marginLeft="1" name="symbolLabel">
+            <styleFont description="Ubuntu,10,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
           </style>
         </styles>
         <layer-tree-group expanded="1" checked="Qt::Checked" name="">
           <customproperties/>
           <layer-tree-layer expanded="1" checked="Qt::Checked" id="AZ_SMA20161206180855122" name="AZ_SMA">
             <customproperties>
-              <property key="legend/node-order" value="0,10,12,13"/>
+              <property key="legend/label-0" value=" "/>
+              <property key="legend/label-10" value=" "/>
+              <property key="legend/label-12" value=" "/>
+              <property key="legend/label-13" value=" "/>
+              <property key="legend/node-order" value="13,0,10,12"/>
               <property key="legend/title-label" value=" "/>
             </customproperties>
           </layer-tree-layer>
         </layer-tree-group>
-        <ComposerItem pagey="139.906" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="873.021" y="139.906" visibility="1" zValue="3" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="62.6672" outlineWidth="0.3" excludeFromExports="0" uuid="{c8359e70-e188-4835-ab37-be4417db335f}" height="91.4" itemRotation="0" frame="false" pagex="873.021">
+        <ComposerItem pagey="245.503" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="23.9991" y="245.503" visibility="1" zValue="3" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="12.8281" outlineWidth="0.3" excludeFromExports="0" uuid="{c8359e70-e188-4835-ab37-be4417db335f}" height="83.4" itemRotation="270" frame="false" pagex="23.9991">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
-          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <BackgroundColor alpha="255" red="238" blue="238" green="238"/>
           <customproperties/>
         </ComposerItem>
       </ComposerLegend>
-      <ComposerLegend symbolWidth="22" title="Chance of Seeing Quail" rasterBorderWidth="0" titleAlignment="4" map="0" wmsLegendWidth="50" rasterBorderColor="0,0,0,255" wrapChar="" fontColor="#000000" columnCount="1" wmsLegendHeight="25" columnSpace="2" symbolHeight="15" equalColumnWidth="0" resizeToContents="1" splitLayer="0" boxSpace="2" rasterBorder="1">
+      <ComposerLegend symbolWidth="10" resizeToContents="1" title="" boxSpace="2" rasterBorderWidth="0" splitLayer="0" equalColumnWidth="0" titleAlignment="4" rasterBorder="1" symbolHeight="10" wmsLegendHeight="25" wrapChar="" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1" rasterBorderColor="0,0,0,255">
         <styles>
           <style marginBottom="2" name="title">
-            <styleFont description="Ubuntu,36,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
+            <styleFont description="Ubuntu,10,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
           </style>
           <style marginTop="2" name="group">
             <styleFont description="Ubuntu,24,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
@@ -163,18 +239,18 @@
           <style marginTop="2" name="subgroup">
             <styleFont description="Ubuntu,12,-1,5,50,0,0,0,0,0" style=""/>
           </style>
-          <style marginTop="2" name="symbol">
+          <style marginTop="4" name="symbol">
             <styleFont description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
           </style>
-          <style marginTop="2" marginLeft="2" name="symbolLabel">
-            <styleFont description="Ubuntu,26,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
+          <style marginTop="4" marginLeft="2" name="symbolLabel">
+            <styleFont description="Ubuntu,8,-1,5,63,1,0,0,0,0" style="Medium Italic"/>
           </style>
         </styles>
         <layer-tree-group expanded="1" checked="Qt::Checked" name="">
           <customproperties/>
           <layer-tree-layer expanded="1" checked="Qt::Checked" id="quail_map_5x520161220125406616" name="quail_map_5x5">
             <customproperties>
-              <property key="legend/label-0" value="Low"/>
+              <property key="legend/label-0" value=" "/>
               <property key="legend/label-1" value=" "/>
               <property key="legend/label-2" value=" "/>
               <property key="legend/label-3" value=" "/>
@@ -183,22 +259,57 @@
               <property key="legend/label-6" value=" "/>
               <property key="legend/label-7" value=" "/>
               <property key="legend/label-8" value=" "/>
-              <property key="legend/label-9" value="High"/>
+              <property key="legend/label-9" value=" "/>
+              <property key="legend/node-order" value="0,1,2,3,4,5,6"/>
               <property key="legend/title-label" value=" "/>
             </customproperties>
           </layer-tree-layer>
         </layer-tree-group>
-        <ComposerItem pagey="34.3064" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="804.883" y="34.3064" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="136.277" outlineWidth="0.3" excludeFromExports="0" uuid="{3e76fe2e-8e41-45a5-949b-fdc1918c4dda}" height="197" itemRotation="0" frame="false" pagex="804.883">
+        <ComposerItem pagey="248.395" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="112.2" y="248.395" visibility="1" zValue="2" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="21.0058" outlineWidth="0.3" excludeFromExports="0" uuid="{3e76fe2e-8e41-45a5-949b-fdc1918c4dda}" height="124.912" itemRotation="270" frame="false" pagex="112.2">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="238" blue="238" green="238"/>
           <customproperties/>
         </ComposerItem>
       </ComposerLegend>
-      <ComposerMap followPreset="false" mapRotation="0" keepLayerSet="false" followPresetName="" id="0" previewMode="Cache" drawCanvasItems="true">
-        <Extent ymin="31.31616457815282217" xmin="-111.93876644858504221" ymax="33.30790878663294308" xmax="-109.34949897756088433"/>
+      <ComposerPicture resizeMode="0" svgBorderWidth="0.2" pictureRotation="0" pictureWidth="418.47" svgFillColor="255,255,255,255" svgBorderColor="0,0,0,255" northMode="0" file="../results/just_map.png" northOffset="0" pictureHeight="278.98" mapId="-1" anchorPoint="0">
+        <ComposerItem pagey="0" page="1" id="" lastValidViewScaleFactor="-1" positionMode="0" positionLock="false" x="0.287101" y="0" visibility="1" zValue="1" background="false" transparency="0" frameJoinStyle="miter" blendMode="0" width="418.47" outlineWidth="0.3" excludeFromExports="0" uuid="{7d6b051f-4945-460e-98ac-8a8c732128fe}" height="279.4" itemRotation="0" frame="false" pagex="0.287101">
+          <FrameColor alpha="255" red="0" blue="0" green="0"/>
+          <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+          <dataDefinedSource expr="" field="" active="false" useExpr="true"/>
+          <customproperties/>
+        </ComposerItem>
+      </ComposerPicture>
+      <customproperties>
+        <property key="imageCropMarginBottom" value="0"/>
+        <property key="imageCropMarginLeft" value="0"/>
+        <property key="imageCropMarginRight" value="0"/>
+        <property key="imageCropMarginTop" value="0"/>
+        <property key="imageCropToContents" value="false"/>
+      </customproperties>
+    </Composition>
+  </Composer>
+  <Composer title="just map" visible="0">
+    <Composition resizeToContentsMarginLeft="0" snapping="0" showPages="1" guidesVisible="1" resizeToContentsMarginTop="0" worldFileMap="{19603689-4508-44c3-bc50-a8fea082e74c}" alignmentSnap="1" printResolution="300" paperWidth="457.2" gridVisible="0" snapGridOffsetX="0" smartGuides="1" snapGridOffsetY="0" resizeToContentsMarginRight="0" snapTolerancePixels="5" printAsRaster="0" generateWorldFile="0" paperHeight="304.8" numPages="1" snapGridResolution="10" resizeToContentsMarginBottom="0">
+      <symbol alpha="1" clip_to_extent="1" type="fill" name="">
+        <layer pass="0" class="SimpleFill" locked="0">
+          <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="color" v="255,255,255,255"/>
+          <prop k="joinstyle" v="miter"/>
+          <prop k="offset" v="0,0"/>
+          <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
+          <prop k="offset_unit" v="MM"/>
+          <prop k="outline_color" v="0,0,0,255"/>
+          <prop k="outline_style" v="no"/>
+          <prop k="outline_width" v="0.26"/>
+          <prop k="outline_width_unit" v="MM"/>
+          <prop k="style" v="solid"/>
+        </layer>
+      </symbol>
+      <ComposerMap followPreset="false" mapRotation="0" keepLayerSet="false" followPresetName="" id="0" previewMode="Render" drawCanvasItems="true">
+        <Extent ymin="31.33000714714464152" xmin="-111.57987745828182824" ymax="32.85435395777572154" xmax="-109.29759897701256932"/>
         <LayerSet/>
         <Grid/>
-        <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{97f4ded2-4a71-428b-b720-dba4198e57a4}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
+        <ComposerMapGrid rightAnnotationDirection="0" gridFramePenColor="0,0,0,255" show="0" bottomAnnotationPosition="1" annotationPrecision="3" showAnnotation="0" topFrameDivisions="0" uuid="{b4cd4b8f-1c9c-405c-ae05-4afa85b746f9}" leftAnnotationDirection="0" topAnnotationPosition="1" rightAnnotationDisplay="0" offsetX="0" offsetY="0" rightFrameDivisions="0" gridStyle="0" annotationFontColor="0,0,0,255" intervalX="0" gridFrameSideFlags="15" intervalY="0" bottomAnnotationDirection="0" leftAnnotationDisplay="0" leftFrameDivisions="0" frameFillColor1="255,255,255,255" annotationExpression="" frameFillColor2="0,0,0,255" crossLength="3" gridFramePenThickness="0.5" bottomAnnotationDisplay="0" unit="0" topAnnotationDisplay="0" leftAnnotationPosition="1" blendMode="0" gridFrameStyle="0" rightAnnotationPosition="1" gridFrameWidth="2" name="Grid 1" annotationFormat="0" bottomFrameDivisions="0" topAnnotationDirection="0" frameAnnotationDistance="1">
           <lineStyle>
             <symbol alpha="1" clip_to_extent="1" type="line" name="">
               <layer pass="0" class="SimpleLine" locked="0">
@@ -247,13 +358,19 @@
           <annotationFontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
         </ComposerMapGrid>
         <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
-        <ComposerItem pagey="5.68052" page="1" id="" lastValidViewScaleFactor="0.757874" positionMode="0" positionLock="false" x="12.8" y="5.68052" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="1092" outlineWidth="0.3" excludeFromExports="0" uuid="{529f4d42-5500-47c8-a26f-8e5f5d7fffb0}" height="840" itemRotation="0" frame="false" pagex="12.8">
+        <ComposerItem pagey="0" page="1" id="" lastValidViewScaleFactor="9.5247" positionMode="0" positionLock="false" x="0" y="0" visibility="1" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="456" outlineWidth="0.3" excludeFromExports="0" uuid="{19603689-4508-44c3-bc50-a8fea082e74c}" height="304.565" itemRotation="0" frame="false" pagex="0">
           <FrameColor alpha="255" red="0" blue="0" green="0"/>
           <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
           <customproperties/>
         </ComposerItem>
       </ComposerMap>
-      <customproperties/>
+      <customproperties>
+        <property key="imageCropMarginBottom" value="0"/>
+        <property key="imageCropMarginLeft" value="0"/>
+        <property key="imageCropMarginRight" value="0"/>
+        <property key="imageCropMarginTop" value="0"/>
+        <property key="imageCropToContents" value="false"/>
+      </customproperties>
     </Composition>
   </Composer>
   <projectlayers>
@@ -1205,6 +1322,7 @@ def my_form_open(dialog, layer, feature):
       <SingleCategoryDiagramRenderer diagramType="Histogram" sizeLegend="0" attributeLegend="1">
         <DiagramCategory penColor="#000000" labelPlacementMethod="XHeight" penWidth="0" diagramOrientation="Up" sizeScale="0,0,0,0,0,0" minimumSize="0" barWidth="5" penAlpha="255" maxScaleDenominator="1e+08" backgroundColor="#ffffff" transparency="0" width="15" scaleDependency="Area" backgroundAlpha="255" angleOffset="1440" scaleBasedVisibility="0" enabled="0" height="15" lineSizeScale="0,0,0,0,0,0" sizeType="MM" lineSizeType="MM" minScaleDenominator="inf">
           <fontProperties description="Ubuntu,11,-1,5,50,0,0,0,0,0" style=""/>
+          <attribute field="" color="#000000" label=""/>
         </DiagramCategory>
         <symbol alpha="1" clip_to_extent="1" type="marker" name="sizeSymbol">
           <layer pass="0" class="SimpleMarker" locked="0">
@@ -1290,7 +1408,7 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
       <id>cities_points20161220130240852</id>
-      <datasource>./commondata/shapefiles/cities_points.shp|layerid=0|subset="POPULATION" > 500</datasource>
+      <datasource>./cities_points.shp|layerid=0|subset="POPULATION" > 500</datasource>
       <keywordList>
         <value></value>
       </keywordList>
@@ -1724,6 +1842,12 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer simplifyAlgorithm="0" minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="1" readOnly="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Line" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+      <extent>
+        <xmin>-114.78693599999999719</xmin>
+        <ymin>31.33264999999999745</ymin>
+        <xmax>-109.04522799999999449</xmax>
+        <ymax>37.00166999999999007</ymax>
+      </extent>
       <id>tl_2013_04_prisecroads20161208124433295</id>
       <datasource>./tl_2013_04_prisecroads.shp</datasource>
       <keywordList>
